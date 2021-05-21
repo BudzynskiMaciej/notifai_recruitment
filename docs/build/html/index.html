@@ -44,6 +44,329 @@
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
 </section>
+<section id="textify-app">
+<h1>Textify App<a class="headerlink" href="#textify-app" title="Permalink to this headline">¶</a></h1>
+<p>This is rest api that allow store, edit and delete custom text notes. It
+is written in <a class="reference external" href="https://www.python.org/">Python</a> v3.7 and
+<a class="reference external" href="https://www.djangoproject.com/">Django</a> v3.2.3. It uses
+<a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a> as database engine on
+production and <a class="reference external" href="https://www.sqlite.org/">SQLite</a> for testing.
+Application is deployed on <a class="reference external" href="https://heroku.com/">Heroku</a>.</p>
+<section id="table-of-content">
+<h2>Table of content<a class="headerlink" href="#table-of-content" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#table-of-content">Table of content</a></p></li>
+<li><p><a class="reference external" href="#rest-endpoints">REST Endpoints</a></p></li>
+<li><p><a class="reference external" href="#get-list-of-all-available-routes-for-api">Get list of all available routes for
+API</a></p>
+<ul>
+<li><p><a class="reference external" href="#request">Request</a></p></li>
+<li><p><a class="reference external" href="#response">Response</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#get-list-of-all-notes">Get list of all notes</a></p>
+<ul>
+<li><p><a class="reference external" href="#request-1">Request</a></p></li>
+<li><p><a class="reference external" href="#response-1">Response</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#create-a-new-note">Create a new note</a></p>
+<ul>
+<li><p><a class="reference external" href="#request-2">Request</a></p></li>
+<li><p><a class="reference external" href="#response-2">Response</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#get-a-specific-note">Get a specific note</a></p>
+<ul>
+<li><p><a class="reference external" href="#request-3">Request</a></p></li>
+<li><p><a class="reference external" href="#response-3">Response</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#edit-a-note">Edit a note</a></p>
+<ul>
+<li><p><a class="reference external" href="#request-4">Request</a></p></li>
+<li><p><a class="reference external" href="#response-4">Response</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#delete-a-note">Delete a note</a></p>
+<ul>
+<li><p><a class="reference external" href="#request-5">Request</a></p></li>
+<li><p><a class="reference external" href="#response-5">Response</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#download">Download</a></p></li>
+<li><p><a class="reference external" href="#running-project">Running project</a></p></li>
+<li><p><a class="reference external" href="#testing-project">Testing project</a></p></li>
+<li><p><a class="reference external" href="#deploy-on-heroku">Deploy on Heroku</a></p></li>
+<li><p><a class="reference external" href="#contact">Contact</a></p></li>
+<li><p><a class="reference external" href="#license">License</a></p></li>
+</ul>
+</section>
+<section id="rest-endpoints">
+<h2>REST Endpoints<a class="headerlink" href="#rest-endpoints" title="Permalink to this headline">¶</a></h2>
+<p>Application is running on production on
+<a class="reference external" href="https://notifai-textify.herokuapp.com/api/v1/">https://notifai-textify.herokuapp.com/api/v1/</a></p>
+<p>The REST API to the Textify App is described below with example requests
+via <a class="reference external" href="https://curl.se/">curl</a>.</p>
+<section id="get-list-of-all-available-routes-for-api">
+<h3>Get list of all available routes for API<a class="headerlink" href="#get-list-of-all-available-routes-for-api" title="Permalink to this headline">¶</a></h3>
+<section id="request">
+<h4>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/v1/</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">notifai</span><span class="o">-</span><span class="n">textify</span><span class="o">.</span><span class="n">herokuapp</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span>
+</pre></div>
+</div>
+</section>
+<section id="response">
+<h4>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="n">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+<span class="n">Server</span><span class="p">:</span> <span class="n">gunicorn</span>
+<span class="n">Date</span><span class="p">:</span> <span class="n">Fri</span><span class="p">,</span> <span class="mi">21</span> <span class="n">May</span> <span class="mi">2021</span> <span class="mi">10</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">06</span> <span class="n">GMT</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+<span class="n">Allow</span><span class="p">:</span> <span class="n">GET</span><span class="p">,</span> <span class="n">HEAD</span><span class="p">,</span> <span class="n">OPTIONS</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Frame</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">DENY</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">63</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">nosniff</span>
+<span class="n">Referrer</span><span class="o">-</span><span class="n">Policy</span><span class="p">:</span> <span class="n">same</span><span class="o">-</span><span class="n">origin</span>
+<span class="n">Via</span><span class="p">:</span> <span class="mf">1.1</span> <span class="n">vegur</span>
+
+<span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="p">:</span><span class="s2">&quot;https://notifai-textify.herokuapp.com/api/v1/notes/&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="get-list-of-all-notes">
+<h3>Get list of all notes<a class="headerlink" href="#get-list-of-all-notes" title="Permalink to this headline">¶</a></h3>
+<section id="id1">
+<h4>Request<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/v1/notes</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">notifai</span><span class="o">-</span><span class="n">textify</span><span class="o">.</span><span class="n">herokuapp</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">notes</span><span class="o">/</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h4>Response<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="n">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+<span class="n">Server</span><span class="p">:</span> <span class="n">gunicorn</span>
+<span class="n">Date</span><span class="p">:</span> <span class="n">Fri</span><span class="p">,</span> <span class="mi">21</span> <span class="n">May</span> <span class="mi">2021</span> <span class="mi">10</span><span class="p">:</span><span class="mi">39</span><span class="p">:</span><span class="mi">39</span> <span class="n">GMT</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+<span class="n">Allow</span><span class="p">:</span> <span class="n">GET</span><span class="p">,</span> <span class="n">POST</span><span class="p">,</span> <span class="n">HEAD</span><span class="p">,</span> <span class="n">OPTIONS</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Frame</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">DENY</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">nosniff</span>
+<span class="n">Referrer</span><span class="o">-</span><span class="n">Policy</span><span class="p">:</span> <span class="n">same</span><span class="o">-</span><span class="n">origin</span>
+<span class="n">Via</span><span class="p">:</span> <span class="mf">1.1</span> <span class="n">vegur</span>
+
+<span class="p">[]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="create-a-new-note">
+<h3>Create a new note<a class="headerlink" href="#create-a-new-note" title="Permalink to this headline">¶</a></h3>
+<section id="id3">
+<h4>Request<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/v1/notes</span></code></p>
+<p>Authentication with <code class="docutils literal notranslate"><span class="pre">HEADER</span> <span class="pre">'Bearer:</span> <span class="pre">P&#64;s$w0rd'</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">notifai</span><span class="o">-</span><span class="n">textify</span><span class="o">.</span><span class="n">herokuapp</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">notes</span><span class="o">/</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Bearer: P@s$w0rd&#39;</span> <span class="o">-</span><span class="n">d</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Hello there&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h4>Response<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="n">Created</span>
+<span class="n">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+<span class="n">Server</span><span class="p">:</span> <span class="n">gunicorn</span>
+<span class="n">Date</span><span class="p">:</span> <span class="n">Fri</span><span class="p">,</span> <span class="mi">21</span> <span class="n">May</span> <span class="mi">2021</span> <span class="mi">10</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mi">57</span> <span class="n">GMT</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+<span class="n">Allow</span><span class="p">:</span> <span class="n">GET</span><span class="p">,</span> <span class="n">POST</span><span class="p">,</span> <span class="n">HEAD</span><span class="p">,</span> <span class="n">OPTIONS</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Frame</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">DENY</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">47</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">nosniff</span>
+<span class="n">Referrer</span><span class="o">-</span><span class="n">Policy</span><span class="p">:</span> <span class="n">same</span><span class="o">-</span><span class="n">origin</span>
+<span class="n">Via</span><span class="p">:</span> <span class="mf">1.1</span> <span class="n">vegur</span>
+
+<span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;Hello there&quot;</span><span class="p">,</span><span class="s2">&quot;view_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="get-a-specific-note">
+<h3>Get a specific note<a class="headerlink" href="#get-a-specific-note" title="Permalink to this headline">¶</a></h3>
+<section id="id5">
+<h4>Request<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/v1/notes/:id/</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">notifai</span><span class="o">-</span><span class="n">textify</span><span class="o">.</span><span class="n">herokuapp</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">notes</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h4>Response<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+<span class="n">Server</span><span class="p">:</span> <span class="n">gunicorn</span>
+<span class="n">Date</span><span class="p">:</span> <span class="n">Fri</span><span class="p">,</span> <span class="mi">21</span> <span class="n">May</span> <span class="mi">2021</span> <span class="mi">10</span><span class="p">:</span><span class="mi">48</span><span class="p">:</span><span class="mi">03</span> <span class="n">GMT</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+<span class="n">Allow</span><span class="p">:</span> <span class="n">GET</span><span class="p">,</span> <span class="n">PUT</span><span class="p">,</span> <span class="n">PATCH</span><span class="p">,</span> <span class="n">DELETE</span><span class="p">,</span> <span class="n">HEAD</span><span class="p">,</span> <span class="n">OPTIONS</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Frame</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">DENY</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">47</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">nosniff</span>
+<span class="n">Referrer</span><span class="o">-</span><span class="n">Policy</span><span class="p">:</span> <span class="n">same</span><span class="o">-</span><span class="n">origin</span>
+<span class="n">Via</span><span class="p">:</span> <span class="mf">1.1</span> <span class="n">vegur</span>
+
+<span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;Hello there&quot;</span><span class="p">,</span><span class="s2">&quot;view_count&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="edit-a-note">
+<h3>Edit a note<a class="headerlink" href="#edit-a-note" title="Permalink to this headline">¶</a></h3>
+<section id="id7">
+<h4>Request<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">PUT</span> <span class="pre">/api/v1/notes/:id/</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">HEADER</span> <span class="pre">'Bearer:</span> <span class="pre">P&#64;s$w0rd'</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">notifai</span><span class="o">-</span><span class="n">textify</span><span class="o">.</span><span class="n">herokuapp</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">notes</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Bearer: P@s$w0rd&#39;</span> <span class="o">-</span><span class="n">d</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Hello World!&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h4>Response<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="n">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+<span class="n">Server</span><span class="p">:</span> <span class="n">gunicorn</span>
+<span class="n">Date</span><span class="p">:</span> <span class="n">Fri</span><span class="p">,</span> <span class="mi">21</span> <span class="n">May</span> <span class="mi">2021</span> <span class="mi">10</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">35</span> <span class="n">GMT</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+<span class="n">Allow</span><span class="p">:</span> <span class="n">GET</span><span class="p">,</span> <span class="n">PUT</span><span class="p">,</span> <span class="n">PATCH</span><span class="p">,</span> <span class="n">DELETE</span><span class="p">,</span> <span class="n">HEAD</span><span class="p">,</span> <span class="n">OPTIONS</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Frame</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">DENY</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">48</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">nosniff</span>
+<span class="n">Referrer</span><span class="o">-</span><span class="n">Policy</span><span class="p">:</span> <span class="n">same</span><span class="o">-</span><span class="n">origin</span>
+<span class="n">Via</span><span class="p">:</span> <span class="mf">1.1</span> <span class="n">vegur</span>
+
+<span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">,</span><span class="s2">&quot;view_count&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="delete-a-note">
+<h3>Delete a note<a class="headerlink" href="#delete-a-note" title="Permalink to this headline">¶</a></h3>
+<section id="id9">
+<h4>Request<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">/api/v1/notes/:id/</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">HEADER</span> <span class="pre">'Bearer:</span> <span class="pre">P&#64;s$w0rd'</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">DELETE</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">notifai</span><span class="o">-</span><span class="n">textify</span><span class="o">.</span><span class="n">herokuapp</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">notes</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Bearer: P@s$w0rd&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h4>Response<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">204</span> <span class="n">No</span> <span class="n">Content</span>
+<span class="n">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+<span class="n">Server</span><span class="p">:</span> <span class="n">gunicorn</span>
+<span class="n">Date</span><span class="p">:</span> <span class="n">Fri</span><span class="p">,</span> <span class="mi">21</span> <span class="n">May</span> <span class="mi">2021</span> <span class="mi">10</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">10</span> <span class="n">GMT</span>
+<span class="n">Allow</span><span class="p">:</span> <span class="n">GET</span><span class="p">,</span> <span class="n">PUT</span><span class="p">,</span> <span class="n">PATCH</span><span class="p">,</span> <span class="n">DELETE</span><span class="p">,</span> <span class="n">HEAD</span><span class="p">,</span> <span class="n">OPTIONS</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Frame</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">DENY</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">-</span><span class="n">Options</span><span class="p">:</span> <span class="n">nosniff</span>
+<span class="n">Referrer</span><span class="o">-</span><span class="n">Policy</span><span class="p">:</span> <span class="n">same</span><span class="o">-</span><span class="n">origin</span>
+<span class="n">Via</span><span class="p">:</span> <span class="mf">1.1</span> <span class="n">vegur</span>
+</pre></div>
+</div>
+<p>`` ``</p>
+</section>
+</section>
+</section>
+<section id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>You can use one of the following methods for download: - Run the command
+below with the command line utility with GIT installed:
+<code class="docutils literal notranslate"><span class="pre">sh</span>&#160;&#160; <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/BudzynskiMaciej/notifai_recruitment.git</span>&#160;&#160; <span class="pre">cd</span> <span class="pre">Django-Project/</span>&#160;&#160; <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">develop</span></code>
+- <a class="reference external" href="https://github.com/BudzynskiMaciej/notifai_recruitment/archive/develop.zip">Download zip
+file</a></p>
+</section>
+<section id="running-project">
+<h2>Running project<a class="headerlink" href="#running-project" title="Permalink to this headline">¶</a></h2>
+<p>Before opening project u need to create .env file. There are
+<a class="reference external" href=".env.example">.env.example</a>, so use its content to implement needed
+enviroment variables. MASTER_KEY is used for authorization in headers.
+The rest can be left unchanged. To run the project you need the
+<a class="reference external" href="https://www.docker.com/">docker</a> and
+<a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a> tools. After
+<a class="reference external" href="#download">download</a> in project directory run the command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose up -d
+</pre></div>
+</div>
+<p>After running the project, you need to migrate the database and create a
+superuser. To do this, run the following commands while the containers
+are running:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose <span class="nb">exec</span> web python manage.py migrate --noinput
+docker-compose <span class="nb">exec</span> web python manage.py initadminacc
+</pre></div>
+</div>
+<p>You can test this solution on your computer. See <a class="reference external" href="#rest-endpoints">REST
+Endpoints</a> for testing. Remember that the base url
+now is not <a class="reference external" href="https://notifai-textify.herokuapp.com/">https://notifai-textify.herokuapp.com/</a>, but it is
+<a class="reference external" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>.</p>
+</section>
+<section id="testing-project">
+<h2>Testing project<a class="headerlink" href="#testing-project" title="Permalink to this headline">¶</a></h2>
+<p>Testing uses <a class="reference external" href="https://www.sqlite.org/">SQLite</a> database so can be
+used in local enviroment or when docker container is running. To run
+test with docker, make sure the container is running and then:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose <span class="nb">exec</span> web python manage.py <span class="nb">test</span>
+</pre></div>
+</div>
+<p>To run test on local machine u to have installed and activated
+<a class="reference external" href="https://virtualenv.pypa.io/en/stable/">virtualenv</a>. Then install the
+project <a class="reference external" href="requirements.txt">requirements.txt</a>. To do this, run the
+following command in the project directory:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install -r requirements.txt
+</pre></div>
+</div>
+<p>To test the project locally, you can use the following commands:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python manage.py <span class="nb">test</span>
+coverage run --source<span class="o">=</span><span class="s1">&#39;.&#39;</span> manage.py <span class="nb">test</span>
+coverage html
+</pre></div>
+</div>
+</section>
+<section id="deploy-on-heroku">
+<h2>Deploy on Heroku<a class="headerlink" href="#deploy-on-heroku" title="Permalink to this headline">¶</a></h2>
+<p>Deploying on heroku is simple. In order to release the applications You
+must follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Create a new github repo and set a Secret on Repo Settings Page
+<code class="docutils literal notranslate"><span class="pre">HEROKU_API_KEY</span></code></p></li>
+<li><p>To get a <code class="docutils literal notranslate"><span class="pre">HEROKU_API_KEY</span></code> you need to login to your heroku account
+and go to API Key in Account Settings. Copy it to your repo settings
+on github.</p></li>
+<li><p>On Heroku page create a new project and go it’s settings and then
+Config Vars. You need to create all enviroment variables that are
+listed in <a class="reference external" href=".env.example">.env.example</a>. Remember to change user
+creditentials and MASTER_KEY.</p></li>
+<li><p>Edit <a class="reference external" href=".github/workflows/main.yml">.github/workflows/main.yml</a>
+setting ur heroku email, app name (unique for heroku) and branch that
+app is deployed from.</p></li>
+<li><p>Commit changes and push to remote repository on github.</p></li>
+<li><p>On Heroku project page select Deploy tab and Deployment method as
+Github.</p></li>
+<li><p>Choose repository you want to deploy and branch specified in step 4.
+Enable Automatic Deploys.</p></li>
+<li><p>If somethink goes wrong use Manual Deploy.</p></li>
+</ol>
+<p>Application should deploy each time it will detect changes on specific
+branch. For my project it is develop branch.</p>
+</section>
+<section id="contact">
+<h2>Contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="mailto:kontakt&#37;&#52;&#48;budzynskimaciej&#46;pl">kontakt<span>&#64;</span>budzynskimaciej<span>&#46;</span>pl</a></p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="LICENSE">MIT</a></p>
+</section>
+</section>
 
 
           </div>
