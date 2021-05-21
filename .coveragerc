@@ -1,0 +1,6 @@
+[run]
+omit=
+    .venv/*
+    */asgi.py
+    */wsgi.py
+    */manage.py

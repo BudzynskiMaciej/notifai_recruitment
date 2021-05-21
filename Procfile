@@ -1,0 +1,1 @@
+web: gunicorn notifai_recruitment.wsgi --log-file -
