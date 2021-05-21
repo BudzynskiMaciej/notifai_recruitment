@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>utils package &#8212; Textify 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="utils-package">
+<h1>utils package<a class="headerlink" href="#utils-package" title="Permalink to this headline">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="utils.management.html">utils.management package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.management.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="utils.management.commands.html">utils.management.commands package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utils.management.commands.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.management.commands.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.management.commands.html#module-utils.management.commands.initadminacc">utils.management.commands.initadminacc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.management.commands.html#module-utils.management.commands">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="utils.management.html#module-utils.management">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.tests.html">utils.tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.tests.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.tests.html#module-utils.tests.test_auth">utils.tests.test_auth module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.tests.html#module-utils.tests">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-utils.apps">
+<span id="utils-apps-module"></span><h2>utils.apps module<a class="headerlink" href="#module-utils.apps" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="utils.apps.UtilsConfig">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">utils.apps.</span></span><span class="sig-name descname"><span class="pre">UtilsConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.apps.UtilsConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.apps.config.AppConfig</span></code></p>
+<p>Configuration class for utils application.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utils.apps.UtilsConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><a class="headerlink" href="#utils.apps.UtilsConfig.default_auto_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default primary key for models in app.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utils.apps.UtilsConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#utils.apps.UtilsConfig.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'utils'</span></em><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-utils.auth">
+<span id="utils-auth-module"></span><h2>utils.auth module<a class="headerlink" href="#module-utils.auth" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="utils.auth.MasterKeyNaiveAuthentication">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">utils.auth.</span></span><span class="sig-name descname"><span class="pre">MasterKeyNaiveAuthentication</span></span><a class="headerlink" href="#utils.auth.MasterKeyNaiveAuthentication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.authentication.BaseAuthentication</span></code></p>
+<p>Authentication model for master key.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It was done the way I understood the assignment.In the task it was written that the authorization will be
+performed by the key in the email exchange. This solution allows you to set the master key as requested in the
+email. You could also set the authorization using the ready-made implementation included in the Django Rest
+Framework, which is TokenAuthentication. This authorization would allow tokens to be assigned to specific users.
+DRF requires any user to be returned upon authorization. For this authorization it will always be the first
+SuperUser, therefore at least one super user account is required. It may not be the best authorization for use
+in production, but it meets the assumption of a token sent by e-mail. In my opinion, a good authentication
+mechanism would be JWT(Json Web Token).</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.auth.MasterKeyNaiveAuthentication.authenticate">
+<span class="sig-name descname"><span class="pre">authenticate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.auth.MasterKeyNaiveAuthentication.authenticate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate the request and return a two-tuple of (user, token).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.auth.MasterKeyNaiveAuthentication.authenticate_header">
+<span class="sig-name descname"><span class="pre">authenticate_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.auth.MasterKeyNaiveAuthentication.authenticate_header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string to be used as the value of the <cite>WWW-Authenticate</cite>
+header in a <cite>401 Unauthenticated</cite> response, or <cite>None</cite> if the
+authentication scheme should return <cite>403 Permission Denied</cite> responses.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-utils" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Textify</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, BudzynskiMaciej.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
