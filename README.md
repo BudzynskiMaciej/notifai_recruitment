@@ -259,7 +259,7 @@ Application should deploy each time it will detect changes on specific branch. F
 
 ## Sphinx Documentation
 
-Link for sphinx documentation with documentation modules is comming in next PR
+[https://budzynskimaciej.pl/notifai_recruitment/](https://budzynskimaciej.pl/notifai_recruitment/)
 
 ## Contact
 
